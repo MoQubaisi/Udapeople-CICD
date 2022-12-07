@@ -17,8 +17,8 @@ commands:
       - run: 
           name: Install Ansible v2
           command: | 
-            test -e /usr/bin/python3 || (apt -y update && apt install -y python3 python3-pip)
-            pip install ansible
+            sudo test -e /usr/bin/python3 || (apt -y update && apt install -y python3 python3-pip)
+            sudo pip install ansible
               
   destroy-environment:
     description: Destroy back-end and front-end cloudformation stacks given a workflow ID.
