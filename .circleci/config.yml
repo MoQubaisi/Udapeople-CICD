@@ -31,7 +31,7 @@ commands:
           when: on_fail
           command: |
             aws cloudformation delete-stack --stack-name udapeople-backend-<< parameters.Workflow_ID >>
-            aws s3 rm s3://udapeople-<<parameters.Workflow.ID>> --recursive
+            aws s3 rm s3://udapeople-<<parameters.Workflow_ID>> --recursive
             aws cloudformation delete-stack --stack-name udapeople-frontend-<< parameters.Workflow_ID >>
 
   # revert-migrations:
@@ -195,7 +195,7 @@ jobs:
       - image: cimg/base:stable
     steps:
       - checkout
-      - insall_ansible
+      - install_ansible
       - add_ssh_keys:
           fingerprints: ["73:43:dc:32:eb:95:c4:dc:e4:2b:9b:8f:0d:65:0b:e0"]
       - attach_workspace:
