@@ -195,8 +195,12 @@ jobs:
       - image: python:3.9
     steps:
       - checkout
-      - run: apt install sudo
-      - install_awscli
+      - run: 
+          name: Install AWS CLI v2
+          command: | 
+            curl "https://awscli.amazonaws.com/awscli-exe-linux-x86_64.zip" -o "awscliv2.zip"
+            unzip awscliv2.zip
+            ./aws/install
       - install_ansible
       - add_ssh_keys:
           fingerprints: ["73:43:dc:32:eb:95:c4:dc:e4:2b:9b:8f:0d:65:0b:e0"]
