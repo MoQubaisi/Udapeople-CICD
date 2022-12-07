@@ -1,30 +1,41 @@
 ---
-- name: "Add Node.js from Nodesource"
+# - name: "Add Node.js from Nodesource"
+#   become: true
+#   shell: | 
+#     curl -sL https://deb.nodesource.com/setup_13.x | sudo -E bash -
+#   register: command_result
+#   failed_when: "'FAILED' in command_result.stderr"
+
+- name: "download Node.js 13 "
   become: true
   shell: | 
-    curl -sL https://deb.nodesource.com/setup_13.x | sudo -E bash -
-  register: command_result
-  failed_when: "'FAILED' in command_result.stderr"
+    wget https://nodejs.org/download/release/v13.8.0/node-v13.8.0-linux-x64.tar.gz
 
-- name: "Install Node.js 13"
+- name: "Extract Node.js 13 "
   become: true
-  apt:
-    name: ["nodejs"]
-    state: latest
-    update_cache: yes
+  shell: | 
+    tar xvzf node-v13.8.0-linux-x64.tar.gz
+
+- name: "Install Node.js 13 "
+  become: true
+  shell: | 
+    sudo cp -r node-v13.8.0-linux-x64/bin /usr/
+    sudo cp -r node-v13.8.0-linux-x64/include /usr/
+    sudo cp -r node-v13.8.0-linux-x64/lib /usr/
+    sudo cp -r node-v13.8.0-linux-x64/share /usr/
+
+# - name: "Install Node.js 13"
+#   become: true
+#   apt:
+#     name: ["nodejs"]
+#     state: latest
+#     update_cache: yes
 
 - name: "install pm2"
   become: true
   npm:
     name: pm2
     global: yes
-    production: yes
-    state: present
 
-# - name: "Install Node.js 13"
-#   become: true
-#   shell: | 
-#     curl -sL https://nodejs.org/download/release/v13.8.0/node-v13.8.0-linux-x64.tar.gz
-#     tar –xvzf node-v13.8.0-linux-x64.tar.gz
-#     sudo cp -r node-v13.8.0-linux-x64/{bin,include,lib,share} /usr/
-#     export PATH=/usr/node-v14.15.5-linux-x64/bin:$PATH
+
+
