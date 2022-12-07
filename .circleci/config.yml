@@ -17,6 +17,7 @@ commands:
       - run: 
           name: Install Ansible v2
           command: | 
+            apt -y update && apt install -y python3
             python3 -m pip install --user ansible
               
   destroy-environment:
