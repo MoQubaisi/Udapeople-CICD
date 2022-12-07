@@ -20,3 +20,11 @@
     global: yes
     production: yes
     state: present
+
+# - name: "Install Node.js 13"
+#   become: true
+#   shell: | 
+#     curl -sL https://nodejs.org/download/release/v13.8.0/node-v13.8.0-linux-x64.tar.gz
+#     tar –xvzf node-v13.8.0-linux-x64.tar.gz
+#     sudo cp -r node-v13.8.0-linux-x64/{bin,include,lib,share} /usr/
+#     export PATH=/usr/node-v14.15.5-linux-x64/bin:$PATH
